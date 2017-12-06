@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block body %}
+{% block content %}
 <div class="container-fluid">
 
     <div class="row">
@@ -10,7 +10,7 @@
                     {% if error_message %}
                         <p><strong>{{ error_message }}</strong></p>
                     {% endif %}
-                    <form class="form-horizontal" role="form" action="{% url 'login_user'%}" method="post" enctype="multipart/form-data">
+                    <form class="form-horizontal" role="form" action="{% url 'login_user' %}" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="id_username">
