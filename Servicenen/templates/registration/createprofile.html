@@ -1,0 +1,8 @@
+{% extends 'registration/base_visitor.html' %}
+{% block content %}
+<h1>This is user profile</h1>
+   <form method = 'POST' enctype="multipart/form-data">
+        {% csrf_token %}
+     {{ form.as_p }}
+    <button type = 'submit'>Submit</button>
+{% endblock %}
