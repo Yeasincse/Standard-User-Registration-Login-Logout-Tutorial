@@ -4,7 +4,7 @@
       <a class="navbar-brand" href="#">Service Nen</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="{% url 'home' %}">Home</a></li>
+      <li class="active"><a href="#">Home</a></li>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Service<span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="#">Service 1-1</a></li>
@@ -16,8 +16,14 @@
       <li><a href="#">Contact US</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="{% url 'register_user' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      <li><a href="{% url 'login_user' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        {% if request.user.is_authenticated %}
+            <li><a href="{% url 'profile' %}"><span class="glyphicon glyphicon-user"></span>Profile</a></li>
+            <li><a href="{% url 'logout_user' %}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+
+        {% else %}
+        <li><a href="{% url 'register_user' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a href="{% url 'login_user' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    {% endif %}
     </ul>
   </div>
 </nav>

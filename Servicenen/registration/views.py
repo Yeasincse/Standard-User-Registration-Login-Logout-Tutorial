@@ -1,14 +1,15 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate,login,logout
 from registration.forms import *
-
+from django.contrib.auth.decorators import login_required
 
 
 def register_user(request):
-    form = UserForm()
+    form = UserForm(request.POST or None)
     if form.is_valid():
         user = form.save(commit=False)
         user.save()
+        login(request, user)
         return redirect('home')
     else:
         context = {"form":form}
@@ -29,26 +30,22 @@ def login_user(request):
 
 def logout_user(request):
     logout(request)
-    form = UserForm()
-    context = {
-        "form": form,
-    }
-    return render(request, 'registration/login.html', context)
+    return redirect('home')
 
 
-
+@login_required
 def profile(request):
     try:
         profile=Profile.objects.get(user = request.user)
         context={'profile':profile}
     except:
-        context={'errmsg': "You have no profile"}
+        context={'error_message': "You have no profile"}
     return render( request, "registration/profile.html",context)
 
-
+@login_required
 def createprofile(request):
     if request.method=="POST":
-        form = ProfileForm(request.POST, instance=request.user.profile)
+        form = ProfileForm(request.POST)
         if form.is_valid():
             profile_obj = form.save(commit = False)
             profile_obj.user = request.user

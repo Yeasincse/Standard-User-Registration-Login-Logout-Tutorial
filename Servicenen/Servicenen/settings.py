@@ -122,3 +122,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS=[
     os.path.join(BASE_DIR,'static')
 ]
+#Login_required to use that....
+LOGIN_URL='home'
+#User authenticate to use that,,,,
+LOGIN_REDIRECT_URL='/home/'
