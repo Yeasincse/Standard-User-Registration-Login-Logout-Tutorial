@@ -34,7 +34,12 @@
                             </div>
                         </div>
                     </form>
+                   <div class="col-sm-10">
+                       <p><strong>-- OR --</strong></p>
+                       <a href="{% url 'social:begin' 'github' %}">Login with GitHub</a><br>
+                      </div>
                 </div>
+
                 <div class="panel-footer">
                     Don't have an account? <a href="{% url 'register_user' %}">Click here</a> to register.
                 </div>

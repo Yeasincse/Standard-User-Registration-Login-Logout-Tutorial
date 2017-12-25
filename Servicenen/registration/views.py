@@ -25,7 +25,7 @@ def login_user(request):
             login(request,user)
             return redirect('home')
         else:
-            return render(request, 'registration/login.html', {'error_message': 'Invalid login'})
+            return render(request, 'registration/login.html', {'error_message': 'Username or Password Invalid login'})
     return render(request, 'registration/login.html')
 
 def logout_user(request):

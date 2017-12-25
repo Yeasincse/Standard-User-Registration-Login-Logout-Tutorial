@@ -21,4 +21,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^home/',views.home,name='home'),
     url(r'^registration/',include('registration.urls')),
+    url(r'^oauth/', include('social_django.urls', namespace='social')),# <--
 ]
